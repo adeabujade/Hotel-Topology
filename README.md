@@ -56,6 +56,7 @@ Each department was allocated a printer connected to its designated VLAN. The pr
 Unique VLANs were assigned to each department to ensure logical separation and enhance security. The VLANs were configured as follows:
   
 First Floor:
+
 VLAN 10: Reception
 
 VLAN 20: Store
@@ -63,6 +64,7 @@ VLAN 20: Store
 VLAN 30: Logistics
   
 Second Floor:
+
 VLAN 40: Finance
 
 VLAN 50: HR
@@ -70,6 +72,7 @@ VLAN 50: HR
 VLAN 60: Sales/Marketing
 
 Third Floor:
+
 VLAN 70: IT
 
 VLAN 80: Admin
