@@ -31,7 +31,9 @@ This project focuses on designing a functional and efficient network for a three
 To ensure inter-floor connectivity, three routers were deployed, with one router assigned to each floor. The routers were interconnected using serial DCE cables with the following IP subnets:
   
 -Router1 to Router2: 10.10.10.0/30
+
 -Router2 to Router3: 10.10.10.4/30
+
 -Router1 to Router3: 10.10.10.8/30
 
 Switches:
@@ -52,19 +54,26 @@ Each department was allocated a printer connected to its designated VLAN. The pr
 <p>
 <h2>2. VLAN Configuration</h2>
 Unique VLANs were assigned to each department to ensure logical separation and enhance security. The VLANs were configured as follows:
+  
 First Floor:
 VLAN 10: Reception
+
 VLAN 20: Store
+
 VLAN 30: Logistics
   
 Second Floor:
 VLAN 40: Finance
+
 VLAN 50: HR
+
 VLAN 60: Sales/Marketing
 
 Third Floor:
 VLAN 70: IT
+
 VLAN 80: Admin
+
 Each VLAN was mapped to specific switch ports to segregate traffic and ensure efficient communication within the respective departments.
 
 </p>
