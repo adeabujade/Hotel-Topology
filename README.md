@@ -1,7 +1,8 @@
 <p align="center">
 </p>
 
-<h1>Cisco Packet Tracer |  Hotel Topology
+<h1>Cisco Packet Tracer |  Hotel Topology<h1>
+  
 This project focuses on designing a functional and efficient network for a three-story hotel using Cisco Packet Tracer. The network will support both business operations and guest services while ensuring scalability, security, and ease of management. Each floor has distinct departments that need tailored connectivity and configurations based on their specific needs.
 
 <h2>Environments and Technologies Used</h2>
@@ -23,7 +24,7 @@ This project focuses on designing a functional and efficient network for a three
 <h2>Network Design Implementation</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>1. Network Topology</h2>
@@ -70,7 +71,7 @@ Each VLAN was mapped to specific switch ports to segregate traffic and ensure ef
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>3. Routing Protocol</h2>
@@ -84,7 +85,7 @@ Subnets associated with each router’s interfaces were advertised using the net
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>4. DHCP Configuration</h2>
@@ -98,7 +99,7 @@ Ensuring the DHCP configuration matched the VLAN’s IP range to prevent conflic
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>5. SSH Configuration</h2>
@@ -112,7 +113,7 @@ Enabling SSH access while disabling Telnet for security purposes.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>6. Port Security for IT Department</h2>
@@ -128,7 +129,7 @@ Used sticky MAC address learning to dynamically learn and save the Test-PC’s M
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>7. Test Remote Login</h2>
@@ -143,7 +144,7 @@ The port security mechanism was tested to ensure unauthorized devices could not 
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 <h2>Conclusion</h2>
