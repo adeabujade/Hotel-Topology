@@ -28,13 +28,86 @@ This project focuses on designing a functional and efficient network for a three
 </p>
 <p>
 <h2>1. Network Topology</h2>
-To ensure inter-floor connectivity, three routers were deployed, with one router assigned to each floor. The routers were interconnected using serial DCE cables with the following IP subnets:
   
--Router1 to Router2: 10.10.10.0/30
+To ensure inter-floor connectivity, three routers were deployed, with one router assigned to each floor. The routers were interconnected using serial DCE cables with the following IP subnets:
 
--Router2 to Router3: 10.10.10.4/30
+Router Connections and Subnets:
 
--Router1 to Router3: 10.10.10.8/30
+Router1 ↔ Router2: 10.10.10.0/30
+
+Router2 ↔ Router3: 10.10.10.4/30
+
+Router1 ↔ Router3: 10.10.10.8/30
+
+Configuration:
+
+-Router1 Configuration:
+
+Interfaces:
+
+Serial0/0 (to Router2): 10.10.10.1/30
+
+interface Serial0/0
+
+ip address 10.10.10.1 255.255.255.252
+
+clock rate 64000
+
+no shutdown
+
+Serial0/1 (to Router3): 10.10.10.9/30
+
+interface Serial0/1
+
+ip address 10.10.10.9 255.255.255.252
+
+clock rate 64000
+
+no shutdown
+
+
+-Router2: Configuration
+
+Interfaces:
+
+Serial0/0 (to Router1): 10.10.10.2/30
+
+interface Serial0/0
+
+ip address 10.10.10.2 255.255.255.252
+
+no shutdown
+
+Serial0/1 (to Router3): 10.10.10.5/30
+
+interface Serial0/1
+
+ip address 10.10.10.5 255.255.255.252
+
+clock rate 64000
+
+no shutdown
+
+-Router 3 Configuration:
+
+Interfaces:
+
+Serial0/0 (to Router2): 10.10.10.6/30
+
+interface Serial0/0
+
+ip address 10.10.10.6 255.255.255.252
+
+no shutdown
+
+Serial0/1 (to Router1): 10.10.10.10/30
+
+interface Serial0/1
+
+ip address 10.10.10.10 255.255.255.252
+
+no shutdown
+
 
 Switches:
 Each floor was equipped with a dedicated switch connected to the respective router to facilitate wired connections and departmental VLAN segregation.
@@ -42,8 +115,8 @@ Each floor was equipped with a dedicated switch connected to the respective rout
 Wireless Access Points:
 
 To provide wireless connectivity for laptops and mobile phones, one wireless access point was installed on each floor. These access points were configured to serve the specific VLANs assigned to the departments on their respective floors.
-Printers:
 
+Printers:
 Each department was allocated a printer connected to its designated VLAN. The printers were configured to be accessible only by devices within the same VLAN.
 
 </p>
@@ -59,23 +132,71 @@ First Floor:
 
 VLAN 10: Reception
 
+interface range FastEthernet0/1-10
+
+switchport mode access
+
+switchport access vlan 10
+
 VLAN 20: Store
 
+interface range FastEthernet0/11-20
+
+switchport mode access
+
+switchport access vlan 20
+
 VLAN 30: Logistics
+
+interface range FastEthernet0/21-30
+
+switchport mode access
+
+switchport access vlan 30
   
 Second Floor:
 
 VLAN 40: Finance
 
+interface range FastEthernet0/31-40
+
+switchport mode access
+
+switchport access vlan 40
+
 VLAN 50: HR
 
+interface range FastEthernet0/41-50
+
+switchport mode access
+
+switchport access vlan 50
+
 VLAN 60: Sales/Marketing
+
+interface range FastEthernet0/51-60
+
+switchport mode access
+
+switchport access vlan 60
 
 Third Floor:
 
 VLAN 70: IT
 
+interface range FastEthernet0/61-70
+
+switchport mode access
+
+switchport access vlan 70
+
 VLAN 80: Admin
+
+interface range FastEthernet0/71-80
+
+switchport mode access
+
+switchport access vlan 80
 
 Each VLAN was mapped to specific switch ports to segregate traffic and ensure efficient communication within the respective departments.
 
@@ -91,6 +212,31 @@ To enable communication between routers and ensure efficient route advertisement
 Each router was assigned to OSPF process 1.
 Subnets associated with each router’s interfaces were advertised using the network command.
 
+Router 1 Configuration:
+
+router ospf 1
+
+network 10.10.10.0 0.0.0.3 area 0  # Router1 to Router2 link
+
+network 10.10.10.8 0.0.0.3 area 0  # Router1 to Router3 link
+
+Router 2 Configuration:
+
+router ospf 1
+
+network 10.10.10.0 0.0.0.3 area 0  # Router2 to Router1 link
+
+network 10.10.10.4 0.0.0.3 area 0  # Router2 to Router3 link
+
+Router 3 Configuration:
+
+router ospf 1
+
+network 10.10.10.4 0.0.0.3 area 0  # Router3 to Router2 link
+
+network 10.10.10.8 0.0.0.3 area 0  # Router3 to Router1 link
+
+
 </p>
 <br />
 </p>
@@ -101,10 +247,82 @@ Subnets associated with each router’s interfaces were advertised using the net
 </p>
 <p>
 <h2>4. DHCP Configuration</h2>
-Dynamic Host Configuration Protocol (DHCP) was configured on each router to provide automatic IP address assignment for devices connected to their respective VLANs. Key steps included:
-Defining separate DHCP pools for each VLAN.
-Assigning the appropriate gateway IP for each VLAN within the DHCP configuration.
-Ensuring the DHCP configuration matched the VLAN’s IP range to prevent conflicts.
+
+Dynamic Host Configuration Protocol (DHCP) was configured on each router to provide automatic IP address assignment for devices connected to their respective VLANs. 
+
+Key steps included:
+
+Defining separate DHCP pools for each VLAN. Assigning the appropriate gateway IP for each VLAN within the DHCP configuration. Ensuring the DHCP configuration matched the VLAN’s IP range to prevent conflicts.
+
+Router 1:
+
+ip dhcp pool Reception
+
+ network 192.168.8.0 255.255.255.0
+ 
+ default-router 192.168.8.1
+ 
+ dns-server 192.168.8.1
+ 
+ip dhcp pool Store
+
+ network 192.168.7.0 255.255.255.0
+ 
+ default-router 192.168.7.1
+ 
+ dns-server 192.168.7.1
+ 
+ip dhcp pool Logistics
+
+ network 192.168.6.0 255.255.255.0
+ 
+ default-router 192.168.6.1
+ 
+ dns-server 192.168.6.1
+
+Router 2:
+ 
+ip dhcp pool Finance
+
+ network 192.168.5.0 255.255.255.0
+ 
+ default-router 192.168.5.1
+ 
+ dns-server 192.168.5.1
+ 
+ip dhcp pool HR
+
+ network 192.168.4.0 255.255.255.0
+ 
+ default-router 192.168.4.1
+ 
+ dns-server 192.168.4.1
+ 
+ip dhcp pool Sales
+
+ network 192.168.3.0 255.255.255.0
+ 
+ default-router 192.168.3.1
+ 
+ dns-server 192.168.3.1
+
+Router 3:
+ 
+ip dhcp pool Admin
+
+ network 192.168.2.0 255.255.255.0
+ 
+ default-router 192.168.2.1
+ 
+ dns-server 192.168.2.1
+ 
+ip dhcp pool IT
+
+ network 192.168.1.0 255.255.255.0
+ 
+ default-router 192.168.1.1
+ 
+ dns-server 192.168.1.1
 
 </p>
 <br /></p>
@@ -120,35 +338,65 @@ Setting up a username and password for authentication.
 Generating RSA keys to support encrypted communication.
 Enabling SSH access while disabling Telnet for security purposes.
 
-</p>
-<br /></p>
-<br />
+Router 1:
 
-<p>
+hostname Router1
 
-</p>
-<p>
-<h2>6. Port Security for IT Department</h2>
-Port security was implemented on the switch port connected to the IT department to prevent unauthorized access. The configuration:
-Allowed only one MAC address (Test-PC).
-Set the violation mode to shutdown to disable the port if a violation occurred.
-Used sticky MAC address learning to dynamically learn and save the Test-PC’s MAC address.
+ip domain-name example.com
 
-</p>
-<br />
-</p>
-<br /></p>
-<br />
+username admin password admin
 
-<p>
+crypto key generate rsa
 
-</p>
-<p>
-<h2>7. Test Remote Login</h2>
-A PC named Test-PC was connected to port fa0/1 in the IT department. The following tests were conducted to verify the setup:
-Using Test-PC, an SSH connection was established with each router to validate secure remote login.
-The connection confirmed successful routing between VLANs and across floors.
-The port security mechanism was tested to ensure unauthorized devices could not access the IT VLAN.
+ip ssh version 2
+
+line vty 0 4
+
+transport input ssh
+
+login local
+
+do wr
+ 
+Router 2:
+
+hostname Router2
+
+ip domain-name example.com
+
+username admin password admin
+
+crypto key generate rsa
+
+ip ssh version 2
+
+line vty 0 4
+
+transport input ssh
+
+login local
+
+do wr
+
+Router 3:
+
+hostname Router3
+
+ip domain-name example.com
+
+username admin password admin
+
+crypto key generate rsa
+
+ip ssh version 2
+
+line vty 0 4
+
+transport input ssh
+
+login local
+
+do wr
 
 </p>
 <br /></p>
