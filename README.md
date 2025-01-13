@@ -145,11 +145,12 @@ Each department was allocated a printer connected to its designated VLAN. The pr
 </p>
 <p>
 <h2>2. VLAN Configuration</h2>
+  
 Unique VLANs were assigned to each department to ensure logical separation and enhance security. The VLANs were configured as follows:
   
-First Floor:
+Third Floor:
 
-VLAN 10: Reception
+VLAN 10: IT
 
 interface range FastEthernet0/1-10
 
@@ -157,7 +158,7 @@ switchport mode access
 
 switchport access vlan 10
 
-VLAN 20: Store
+VLAN 20: Admin
 
 interface range FastEthernet0/11-20
 
@@ -165,7 +166,10 @@ switchport mode access
 
 switchport access vlan 20
 
-VLAN 30: Logistics
+
+Second Floor:
+
+VLAN 30: Sales
 
 interface range FastEthernet0/21-30
 
@@ -175,7 +179,7 @@ switchport access vlan 30
   
 Second Floor:
 
-VLAN 40: Finance
+VLAN 40: HR
 
 interface range FastEthernet0/31-40
 
@@ -183,7 +187,7 @@ switchport mode access
 
 switchport access vlan 40
 
-VLAN 50: HR
+VLAN 50: Finance
 
 interface range FastEthernet0/41-50
 
@@ -191,7 +195,9 @@ switchport mode access
 
 switchport access vlan 50
 
-VLAN 60: Sales/Marketing
+First Floor:
+
+VLAN 60: Logistics
 
 interface range FastEthernet0/51-60
 
@@ -199,9 +205,7 @@ switchport mode access
 
 switchport access vlan 60
 
-Third Floor:
-
-VLAN 70: IT
+VLAN 70: Store
 
 interface range FastEthernet0/61-70
 
@@ -209,7 +213,7 @@ switchport mode access
 
 switchport access vlan 70
 
-VLAN 80: Admin
+VLAN 80: Reception
 
 interface range FastEthernet0/71-80
 
@@ -218,6 +222,20 @@ switchport mode access
 switchport access vlan 80
 
 Each VLAN was mapped to specific switch ports to segregate traffic and ensure efficient communication within the respective departments.
+
+<h2>Floor 1 VLANS<h2>
+
+![image](https://github.com/user-attachments/assets/bdd7118f-38b7-4f04-a500-bb76674acc3d)
+
+<h2>Floor 2 VLANS<h2>
+  
+![image](https://github.com/user-attachments/assets/14c54b06-f6f2-49ce-85e1-5bec5c1f923b)
+
+<h2>Floor 3 VLANS<h2>
+
+![image](https://github.com/user-attachments/assets/eea53c10-01bf-4a98-a5a7-8d93485ecb34)
+
+
 
 </p>
 <br />
