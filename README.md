@@ -119,6 +119,25 @@ To provide wireless connectivity for laptops and mobile phones, one wireless acc
 Printers:
 Each department was allocated a printer connected to its designated VLAN. The printers were configured to be accessible only by devices within the same VLAN.
 
+<h2>Topology</h2>
+
+![image](https://github.com/user-attachments/assets/a6f36ea7-798a-4875-baf4-5e4efe8bc04b)
+
+<h2>Floor 1 IP addresses</h2>
+
+![image](https://github.com/user-attachments/assets/7b954a86-3ee3-4abe-b15e-cabc8716bf3a)
+
+<h2>Floor 2 IP addresses</h2>
+
+![image](https://github.com/user-attachments/assets/fe8fafad-f6fe-4a5b-b17d-d3dad53800b9
+
+<h2>Floor 3 IP addresses</h2>
+
+![image](https://github.com/user-attachments/assets/713a354f-b6c7-402a-89c4-b9d243c58091)
+
+
+
+
 </p>
 <br />
 
