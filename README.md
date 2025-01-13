@@ -246,32 +246,65 @@ Each VLAN was mapped to specific switch ports to segregate traffic and ensure ef
 <p>
 <h2>3. Routing Protocol</h2>
 To enable communication between routers and ensure efficient route advertisement, OSPF (Open Shortest Path First) was configured. The following configurations were implemented:
-Each router was assigned to OSPF process 1.
-Subnets associated with each router’s interfaces were advertised using the network command.
+Each router was assigned to OSPF process 10. Subnets associated with each router’s interfaces were advertised using the network command.
 
 Router 1 Configuration:
 
-router ospf 1
+router ospf 10
 
-network 10.10.10.0 0.0.0.3 area 0  # Router1 to Router2 link
+ log-adjacency-changes
+ 
+ network 10.10.10.0 0.0.0.3 area 0
+ 
+ network 10.10.10.4 0.0.0.3 area 0
+ 
+ network 192.168.8.0 0.0.0.255 area 0
+ 
+ network 192.168.7.0 0.0.0.255 area 0
+ 
+ network 192.168.6.0 0.0.0.255 area 0
 
-network 10.10.10.8 0.0.0.3 area 0  # Router1 to Router3 link
+ ![image](https://github.com/user-attachments/assets/f111b803-0b46-43b1-a73a-b960088e9790)
 
+ 
 Router 2 Configuration:
 
 router ospf 1
 
-network 10.10.10.0 0.0.0.3 area 0  # Router2 to Router1 link
+router ospf 10
 
-network 10.10.10.4 0.0.0.3 area 0  # Router2 to Router3 link
+ log-adjacency-changes
+ 
+ network 10.10.10.4 0.0.0.3 area 0
+ 
+ network 10.10.10.8 0.0.0.3 area 0
+ 
+ network 192.168.5.0 0.0.0.255 area 0
+ 
+ network 192.168.4.0 0.0.0.255 area 0
+ 
+ network 192.168.3.0 0.0.0.255 area 0
 
+ ![image](https://github.com/user-attachments/assets/eb6e93cd-ee2e-4651-8dbb-05526ab9851a)
+
+ 
 Router 3 Configuration:
 
-router ospf 1
+router ospf 10
 
-network 10.10.10.4 0.0.0.3 area 0  # Router3 to Router2 link
+ log-adjacency-changes
+ 
+ network 10.10.10.0 0.0.0.3 area 0
+ 
+ network 10.10.10.8 0.0.0.3 area 0
+ 
+ network 192.168.2.0 0.0.0.255 area 0
+ 
+ network 192.168.1.0 0.0.0.255 area 0
 
-network 10.10.10.8 0.0.0.3 area 0  # Router3 to Router1 link
+![image](https://github.com/user-attachments/assets/9ebbc20a-196c-49ac-82ac-b3a0fed76d3a)
+
+ 
 
 
 </p>
@@ -291,7 +324,9 @@ Key steps included:
 
 Defining separate DHCP pools for each VLAN. Assigning the appropriate gateway IP for each VLAN within the DHCP configuration. Ensuring the DHCP configuration matched the VLAN’s IP range to prevent conflicts.
 
-Router 1:
+Floor 1:
+
+Router Configurations:
 
 ip dhcp pool Reception
 
@@ -317,8 +352,10 @@ ip dhcp pool Logistics
  
  dns-server 192.168.6.1
 
-Router 2:
- 
+ ![image](https://github.com/user-attachments/assets/e7d16ad8-29ee-41e9-b2b3-3086b670ebcd)
+
+Floor 2 Configurations:
+
 ip dhcp pool Finance
 
  network 192.168.5.0 255.255.255.0
@@ -343,8 +380,10 @@ ip dhcp pool Sales
  
  dns-server 192.168.3.1
 
-Router 3:
- 
+![image](https://github.com/user-attachments/assets/e446b243-a756-43b9-8287-7e3240991576)
+
+Floor 3 Configurations:
+
 ip dhcp pool Admin
 
  network 192.168.2.0 255.255.255.0
@@ -360,6 +399,8 @@ ip dhcp pool IT
  default-router 192.168.1.1
  
  dns-server 192.168.1.1
+
+![image](https://github.com/user-attachments/assets/6bc379b1-c773-4346-adb9-7d982143f0e0)
 
 </p>
 <br /></p>
