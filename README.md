@@ -129,7 +129,7 @@ Each department was allocated a printer connected to its designated VLAN. The pr
 
 <h2>Floor 2 IP addresses</h2>
 
-![image](https://github.com/user-attachments/assets/fe8fafad-f6fe-4a5b-b17d-d3dad53800b9
+![image](https://github.com/user-attachments/assets/fe8fafad-f6fe-4a5b-b17d-d3dad53800b9)
 
 <h2>Floor 3 IP addresses</h2>
 
