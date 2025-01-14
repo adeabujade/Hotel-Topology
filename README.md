@@ -412,9 +412,12 @@ ip dhcp pool IT
 <p>
 <h2>5. SSH Configuration</h2>
 SSH was enabled on all routers to facilitate secure remote management. The configuration included:
-Setting up a username and password for authentication.
-Generating RSA keys to support encrypted communication.
-Enabling SSH access while disabling Telnet for security purposes.
+  
+-Setting up a username and password for authentication.
+
+-Generating RSA keys to support encrypted communication.
+
+-Enabling SSH access while disabling Telnet for security purposes.
 
 Router 1:
 
@@ -435,6 +438,9 @@ transport input ssh
 login local
 
 do wr
+
+![image](https://github.com/user-attachments/assets/1a0e3d05-ac87-4063-a7f5-1973967b67a5)
+
  
 Router 2:
 
@@ -456,6 +462,9 @@ login local
 
 do wr
 
+![image](https://github.com/user-attachments/assets/11299014-d82f-4055-ba37-8044531a9c4a)
+
+
 Router 3:
 
 hostname Router3
@@ -475,6 +484,9 @@ transport input ssh
 login local
 
 do wr
+
+![image](https://github.com/user-attachments/assets/3b4be834-33d7-44c6-992e-9453643c434f)
+
 
 </p>
 <br /></p>
